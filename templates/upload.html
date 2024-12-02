@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Upload Document</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to bottom, #0f0f0f, #1a1a2e);
+        }
+    </style>
+</head>
+<body class="text-gray-300 h-screen flex items-center justify-center">
+    <div class="relative w-full max-w-5xl mx-auto bg-gray-800 rounded-xl shadow-2xl p-8 flex flex-col md:flex-row gap-6">
+        <!-- Left Side: Upload PDF Form -->
+        <div class="md:w-1/2">
+            <h2 class="text-3xl font-bold text-gray-100 mb-6">Upload Your PDF</h2>
+            <form action="/upload" method="post" enctype="multipart/form-data" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium mb-2">Select PDF File</label>
+                    <div class="bg-gray-700 p-4 rounded-lg border border-gray-600 hover:border-gray-400 transition duration-300">
+                        <input type="file" name="file" accept=".pdf" class="w-full text-gray-300 file:cursor-pointer file:bg-gray-600 file:border-none file:text-gray-200 file:px-4 file:py-2" required>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">Only .pdf files are supported.</p>
+                </div>
+                <button type="submit" class="w-full py-3 bg-green-600 text-gray-100 font-semibold rounded-lg hover:bg-green-500 focus:ring-2 focus:ring-green-400 focus:outline-none">
+                    <i class="fas fa-cloud-upload-alt mr-2"></i> Upload
+                </button>
+            </form>
+        </div>
+
+        <!-- Right Side: Use Default Knowledge Base -->
+        <div class="md:w-1/2 bg-gray-700 rounded-lg p-6 flex flex-col items-center text-center">
+            <h2 class="text-xl font-semibold text-gray-200 mb-4">Default Knowledge Base</h2>
+            <div class="p-4 bg-gray-600 rounded-lg shadow-lg text-gray-200 w-full">
+                <i class="fas fa-file-alt text-6xl text-yellow-400 mb-4"></i>
+                <p class="text-lg font-semibold">Retell AI Knowledge Base</p>
+                <p class="text-sm text-gray-400 mt-2">Preloaded default document</p>
+
+                <div class="mt-6 space-y-4">
+                    <!-- View File Button -->
+                    <a href="/view_default_file" target="_blank" class="inline-block w-full py-2 bg-blue-600 text-gray-100 font-medium rounded-lg hover:bg-blue-500 focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                        <i class="fas fa-eye mr-2"></i> View File
+                    </a>
+                    <!-- Use File Button -->
+                    <form action="/upload" method="post" class="w-full">
+                        <input type="hidden" name="use_default_file" value="true">
+                        <button type="submit" class="w-full py-2 bg-purple-600 text-gray-100 font-medium rounded-lg hover:bg-purple-500 focus:ring-2 focus:ring-purple-400 focus:outline-none">
+                            <i class="fas fa-cloud-download-alt mr-2"></i> Use Default File
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

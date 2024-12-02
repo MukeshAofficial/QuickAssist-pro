@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot - Voice Interaction</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .centered {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="centered">
+        <h2 id="status">Listening...</h2>
+        <p id="transcription"></p>
+    </div>
+
+    <script>
+        const statusElement = document.getElementById('status');
+        const transcriptionElement = document.getElementById('transcription');
+
+        let recognition;
+        let isListening = false;
+
+        // Check if the browser supports the Web Speech API
+        if (!('webkitSpeechRecognition' in window)) {
+            alert("Your browser does not support Speech Recognition.");
+        } else {
+            recognition = new webkitSpeechRecognition();
+            recognition.continuous = true;  // Ensures it keeps listening
+            recognition.interimResults = true;
+
+            recognition.onstart = function() {
+                isListening = true;
+                statusElement.textContent = 'Listening...';  // Ensure it's listening
+            };
+
+            recognition.onend = function() {
+                // Don't update status to 'Stopped Listening' as we want continuous listening
+                if (isListening) {
+                    recognition.start();  // Restart recognition if it ends unexpectedly
+                }
+            };
+
+            recognition.onresult = async function(event) {
+                let finalTranscript = '';
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    if (event.results[i].isFinal) {
+                        finalTranscript += event.results[i][0].transcript;
+                    }
+                }
+
+                transcriptionElement.textContent = finalTranscript;
+
+                if (finalTranscript) {
+                    // Send the transcribed text to Flask's /ask route
+                    const response = await fetch('/ask', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ query: finalTranscript })
+                    });
+
+                    const data = await response.json();
+                    const answer = data.answer || "Sorry, I don't have the answer to that.";
+
+                    // Convert answer to speech
+                    speak(answer);
+                }
+            };
+
+            // Start listening immediately when the page loads
+            recognition.start();
+        }
+
+        // Function to convert text to speech
+        function speak(text) {
+            const speechSynthesis = window.speechSynthesis;
+            const utterance = new SpeechSynthesisUtterance(text);
+            speechSynthesis.speak(utterance);
+        }
+    </script>
+
+</body>
+</html>

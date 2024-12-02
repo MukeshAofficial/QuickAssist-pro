@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Quick-Assist-Pro | AI Voicebot Solutions</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #0f0f0f;
+        }
+    </style>
+</head>
+<body class="text-gray-300 min-h-screen flex flex-col">
+    <!-- Redesigned Navigation Bar -->
+    <header class="bg-gray-900 py-4 sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <h1 class="text-2xl font-bold text-blue-400">Quick-Assist-Pro</h1>
+            <nav class="space-x-6 text-sm font-medium">
+                <a href="#" class="hover:text-blue-400">Home</a>
+                <a href="#features" class="hover:text-blue-400">Features</a>
+                <a href="#about" class="hover:text-blue-400">About</a>
+                <a href="#contact" class="hover:text-blue-400">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Redesigned Hero Section -->
+    <!-- Redesigned Hero Section -->
+<section class="bg-gradient-to-r from-black to-gray-800 text-center py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-4xl font-extrabold text-white mb-4">Transform Customer Support with AI</h2>
+        <p class="text-lg text-gray-400 mb-8">
+            Quick-Assist-Pro enables you to create a 24/7 AI-powered voicebot that seamlessly integrates into any website, delivering unparalleled customer service.
+        </p>
+        <a href="/uploading" class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-500 focus:ring-2 focus:ring-blue-400 mb-4">
+            Learn More
+        </a>
+
+        <!-- Embed Voicebot Button -->
+        <button id="embed-voicebot" class="px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-500 focus:ring-2 focus:ring-green-400">
+            Embed Voicebot
+        </button>
+
+        <!-- Hidden textarea to hold the embed code -->
+        <textarea id="embed-code" rows="4" cols="50" readonly class="mt-4 p-2 text-black" style="display: none;"></textarea>
+    </div>
+</section>
+
+<script>
+    document.getElementById('embed-voicebot').addEventListener('click', function() {
+        // Embed code for the voicebot (iframe)
+        const embedCode = `
+            <iframe src="http://127.0.0.1:5000/gpt" width="400" height="600" style="border:none;"></iframe>
+        `;
+
+        // Show the textarea and fill it with the embed code
+        const embedCodeTextarea = document.getElementById('embed-code');
+        embedCodeTextarea.style.display = 'block';
+        embedCodeTextarea.value = embedCode;
+
+        // Copy the embed code to clipboard
+        embedCodeTextarea.select();
+        document.execCommand('copy');
+
+        // Change the button text to indicate success
+        const button = document.getElementById('embed-voicebot');
+        button.textContent = 'Embed Code Copied!';
+        setTimeout(() => {
+            button.textContent = 'Embed Voicebot';  // Reset button text after 2 seconds
+        }, 2000);
+    });
+</script>
+
+  <section id="features" class="py-16 bg-gray-800">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <h3 class="text-3xl font-semibold text-white mb-8">Features That Make Us Stand Out</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="p-6 bg-gray-700 rounded-lg shadow-lg">
+                <i class="fas fa-microphone-alt text-5xl text-blue-400 mb-4"></i>
+                <h4 class="text-xl font-bold text-white mb-2">AI Voicebot</h4>
+                <p class="text-gray-400">Provide human-like responses using advanced AI technology, ensuring your customers always feel heard.</p>
+            </div>
+            <div class="p-6 bg-gray-700 rounded-lg shadow-lg">
+                <i class="fas fa-clock text-5xl text-green-400 mb-4"></i>
+                <h4 class="text-xl font-bold text-white mb-2">24/7 Availability</h4>
+                <p class="text-gray-400">Never miss a customer query. Your voicebot operates round the clock, delivering consistent support.</p>
+            </div>
+            <div class="p-6 bg-gray-700 rounded-lg shadow-lg">
+                <i class="fas fa-code text-5xl text-purple-400 mb-4"></i>
+                <h4 class="text-xl font-bold text-white mb-2">Easy Integration</h4>
+                <p class="text-gray-400">Embed into any website with minimal effort. Quick-Assist-Pro adapts seamlessly to your platform.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section id="how-it-works" class="py-16 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <h3 class="text-3xl font-semibold text-white mb-10">How It Works</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <!-- Step 1 -->
+            <div class="p-6 bg-gray-800 rounded-lg shadow-lg text-left">
+                <div class="flex items-center space-x-4">
+                    <span class="text-2xl bg-blue-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">1</span>
+                    <h4 class="text-xl font-bold text-white">Upload Your Knowledge Base</h4>
+                </div>
+                <p class="text-gray-400 mt-4">
+                    Simply upload your company’s custom knowledge base in PDF format. This can include FAQs, policy documents, or training materials.
+                </p>
+            </div>
+            <!-- Step 2 -->
+            <div class="p-6 bg-gray-800 rounded-lg shadow-lg text-left">
+                <div class="flex items-center space-x-4">
+                    <span class="text-2xl bg-blue-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">2</span>
+                    <h4 class="text-xl font-bold text-white">AI Processing & Fine-Tuning</h4>
+                </div>
+                <p class="text-gray-400 mt-4">
+                    Once uploaded, your knowledge base is intelligently analyzed using Gemini LLM and LangChain, employing the Retrieval-Augmented Generation (RAG) technique to ensure accurate indexing and deep semantic understanding, enabling precise and context-aware responses.
+                </p>
+            </div>
+            <!-- Step 3 -->
+            <div class="p-6 bg-gray-800 rounded-lg shadow-lg text-left">
+                <div class="flex items-center space-x-4">
+                    <span class="text-2xl bg-blue-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">3</span>
+                    <h4 class="text-xl font-bold text-white">Deliver Tailored Responses</h4>
+                </div>
+                <p class="text-gray-400 mt-4">
+                    The AI retrieves answers from your custom knowledge base, providing tailored and accurate responses to customer queries instantly.
+                </p>
+            </div>
+        </div>
+        <div class="mt-12">
+            <a href="/uploading" class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-500 focus:ring-2 focus:ring-blue-400">
+                Get Started Today
+            </a>
+        </div>
+    </div>
+</section>
+
+    <!-- Redesigned About Section -->
+    <section id="about" class="py-16 bg-black text-center">
+        <div class="max-w-5xl mx-auto px-6">
+            <h3 class="text-3xl font-bold text-gray-100 mb-6">About Quick-Assist-Pro</h3>
+            <p class="text-gray-400 text-lg leading-relaxed">
+                Quick-Assist-Pro is your go-to solution for creating AI-powered customer support voicebots that operate effortlessly 24/7. 
+                Designed for seamless integration, our platform ensures that businesses can deliver consistent, high-quality customer interactions without interruptions. 
+                Our mission is to simplify and enhance customer support experiences, empowering businesses to focus on growth and innovation.
+            </p>
+        </div>
+    </section>
+
+    <!-- Redesigned Contact Section -->
+    <section id="contact" class="bg-gray-800 py-16">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h4 class="text-2xl font-bold text-white mb-4">Get in Touch</h4>
+            <p class="text-gray-400 mb-8">
+                Have questions or need assistance? Our team is here to help. Reach out to us anytime!
+            </p>
+            <form action="/contact" method="post" class="space-y-6">
+                <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 bg-gray-700 rounded-lg text-gray-300 focus:ring-2 focus:ring-blue-400">
+                <input type="email" name="email" placeholder="Your Email" required class="w-full p-3 bg-gray-700 rounded-lg text-gray-300 focus:ring-2 focus:ring-blue-400">
+                <textarea name="message" rows="4" placeholder="Your Message" required class="w-full p-3 bg-gray-700 rounded-lg text-gray-300 focus:ring-2 focus:ring-blue-400"></textarea>
+                <button type="submit" class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-500 focus:ring-2 focus:ring-blue-400">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Redesigned Footer -->
+    <footer class="py-8 bg-gray-900 text-gray-400">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <p>&copy; 2024 Quick-Assist-Pro. All rights reserved.</p>
+            <nav class="space-x-4 mt-4 md:mt-0">
+                <a href="#" class="hover:text-white">Privacy Policy</a>
+                <a href="#" class="hover:text-white">Terms of Service</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>
