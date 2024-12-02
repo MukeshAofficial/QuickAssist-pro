@@ -124,7 +124,7 @@ def upload_file():
         if 'use_default_file' in request.form and request.form['use_default_file'] == 'true':
             file_path = os.path.join(os.getcwd(), KNOWLEDGE_BASE_FILE)
             process_pdf(file_path)
-            return redirect(url_for('chatbot')) 
+            return redirect(url_for('voicebot')) 
 
         if 'file' not in request.files:
             return jsonify({"error": "No file part."}), 400
